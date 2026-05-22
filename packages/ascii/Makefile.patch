@@ -1,14 +1,24 @@
 --- a/Makefile
 +++ b/Makefile
-@@ -56,8 +56,8 @@ splint: nametable.h splashscreen.h
- 	splint +quiet +posixlib $(SPLINT_SUPPRESSIONS) ascii.c
+@@ -68,15 +68,15 @@
+ # Install/uninstall
  
- install: ascii ascii.1
--	cp ascii $(DESTDIR)$(PREFIX)/bin/ascii
--	cp ascii.1 $(DESTDIR)$(PREFIX)/share/man/man1
-+	install -Dm755 ascii -t $(DESTDIR)$(PREFIX)/bin
-+	install -Dm644 ascii.1 -t $(DESTDIR)$(PREFIX)/share/man/man1
+ install:
+-	install -d $(DESTDIR)$(BINDIR)
+-	install -m 755 ascii $(DESTDIR)$(BINDIR)/ascii
+-	install -d $(DESTDIR)$(MANDIR)
+-	install -d $(DESTDIR)$(MANDIR)/man1
+-	install ascii.1 $(DESTDIR)$(MANDIR)/man1/ascii.1
++	install -d $(DESTDIR)$(PREFIX)$(BINDIR)
++	install -m 755 ascii $(DESTDIR)$(PREFIX)$(BINDIR)/ascii
++	install -d $(DESTDIR)$(PREFIX)$(MANDIR)
++	install -d $(DESTDIR)$(PREFIX)$(MANDIR)/man1
++	install ascii.1 $(DESTDIR)$(PREFIX)$(MANDIR)/man1/ascii.1
  
  uninstall:
- 	rm $(DESTDIR)$(PREFIX)/bin/ascii
-
+-	rm -f $(DESTDIR)$(BINDIR)/ascii
+-	rm -f $(DESTDIR)$(MANDIR)/man1/ascii.1
++	rm -f $(DESTDIR)$(PREFIX)$(BINDIR)/ascii
++	rm -f $(DESTDIR)$(PREFIX)$(MANDIR)/man1/ascii.1
+ 
+ # Export
